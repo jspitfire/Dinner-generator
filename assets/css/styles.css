@@ -23,7 +23,7 @@
   --button-hover-color: #45a049;
 }
 
-body {
+/* body {
   font-family: 'Arial', sans-serif;
   background-color: var(--WHITE);
   color: var(--BLACK);
@@ -34,10 +34,10 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-}
+} */
 
 /* Button Styles */
-.button {
+/* .button {
   background-color: var(--button-bg-color);
   color: var(--button-text-color);
   border: none;
@@ -46,14 +46,14 @@ body {
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease;
-}
+} */
 
-.button:hover {
+/* .button:hover {
   background-color: var(--button-hover-color);
-}
+} */
 
 /* End Criteria Specific Styles */
-#random-pic {
+/* #random-pic {
   max-width: 100%;
   height: auto;
   border-radius: 5px;
@@ -84,4 +84,4 @@ body {
 .favorites-item {
   font-size: var(--F-M);
   margin-bottom: 5px;
-}
+} */
