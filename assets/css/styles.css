@@ -1,0 +1,87 @@
+/* Global Styles */
+:root {
+  /* FONT SIZES */
+  --F-XXS: 0.25rem;
+  --F-XS: 0.5rem;
+  --F-SM: 0.75rem;
+  --F-NORMAL: 1rem;
+  --F-M: 1.25rem;
+  --F-L: 1.5rem;
+  --F-XL: 1.75rem;
+  --F-XXL: 2rem;
+
+  /* COLORS */
+  --WHITE: #f5f5f5;
+  --BLUE: #118ab2;
+  --RED: #df2935;
+  --YELLOW: #ff9f1c;
+  --BLACK: #333;
+
+  /* BUTTON STYLES */
+  --button-bg-color: #4CAF50;
+  --button-text-color: #fff;
+  --button-hover-color: #45a049;
+}
+
+/* body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--WHITE);
+  color: var(--BLACK);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+} */
+
+/* Button Styles */
+/* .button {
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+} */
+
+/* .button:hover {
+  background-color: var(--button-hover-color);
+} */
+
+/* End Criteria Specific Styles */
+/* #random-pic {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.recipe-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#recipe-name {
+  font-size: var(--F-L);
+  margin-bottom: 10px;
+}
+
+#recipe-ingredients {
+  font-size: var(--F-NORMAL);
+  margin-bottom: 20px;
+}
+
+#favorites-list {
+  list-style: none;
+  padding: 0;
+}
+
+.favorites-item {
+  font-size: var(--F-M);
+  margin-bottom: 5px;
+} */
