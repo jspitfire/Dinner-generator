@@ -1,21 +1,4 @@
-body {
-  font-size: var(--F-NORMAL);
-  color: var(--BLACK);
-  background-color: var(--WHITE);
-}
-
-.header {
-  font-size: var(--F-L);
-  color: var(--BLUE);
-}
-
-.error-message {
-  color: var(--RED);
-}
-
-.warning-message {
-  color: var(--YELLOW);
-}/* Global Styles */
+/* Global Styles */
 :root {
   --button-bg-color: #4CAF50;
   --button-text-color: #fff;
@@ -84,4 +67,3 @@ body {
   font-size: var(--F-M);
   margin-bottom: 5px;
 }
-
