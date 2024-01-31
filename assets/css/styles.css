@@ -1,5 +1,23 @@
 /* Global Styles */
 :root {
+  /* FONT SIZES */
+  --F-XXS: 0.25rem;
+  --F-XS: 0.5rem;
+  --F-SM: 0.75rem;
+  --F-NORMAL: 1rem;
+  --F-M: 1.25rem;
+  --F-L: 1.5rem;
+  --F-XL: 1.75rem;
+  --F-XXL: 2rem;
+
+  /* COLORS */
+  --WHITE: #f5f5f5;
+  --BLUE: #118ab2;
+  --RED: #df2935;
+  --YELLOW: #ff9f1c;
+  --BLACK: #333;
+
+  /* BUTTON STYLES */
   --button-bg-color: #4CAF50;
   --button-text-color: #fff;
   --button-hover-color: #45a049;
