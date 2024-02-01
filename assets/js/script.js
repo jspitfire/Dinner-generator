@@ -19,14 +19,20 @@ https://api.spoonacular.com/recipes/complexSearch?
 &apiKey=${API_KEY}
 `;
 
-// fetch(queryURL)
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   .then(function (data) {
-//     console.log(data);
-//   })
+fetch(queryURL)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+  })
 
+  
+
+  // for (var i = 0; i < results.length; i++) {
+  //   var ingredients = results[i].ingredients;
+  //   console.log("Ingredients for item " + i + ":", ingredients);
+  // }
 // let categoryInput = $('#categoryInput').attr("value", query);
 // console.log(categoryInput);
 
