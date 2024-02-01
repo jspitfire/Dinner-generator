@@ -32,26 +32,58 @@ https://api.spoonacular.com/recipes/complexSearch?
 
 const foodish = "https://foodish-api.com/api/"
 
-// a GET request to the API endpoint
-fetch(foodish)
-  .then(response => response.json())
-  .then(data => {
-    // console.log(data);
+// // a GET request to the API endpoint
+// fetch(foodish)
+//   .then(response => response.json())
+//   .then(data => {
+//     // console.log(data);
 
-    const imgURL = data.image;
-    // console.log(imgURL);
-    query = getCategory(imgURL);
-    // console.log(query);
+//     const imgURL = data.image;
+//     // console.log(imgURL);
+//     query = getCategory(imgURL);
+//     // console.log(query);
 
-    $('#img-main').attr('src', imgURL);
+//     $('#img-main').attr('src', imgURL);
 
-    $('#categoryInput').attr("value", query);
-  })
-  .catch(error => {
-    // Handle any errors that occurred during the fetch
-    console.error('Error:', error);
-  });
+//     $('#categoryInput').attr("value", query);
+//   })
+//   .catch(error => {
+//     // Handle any errors that occurred during the fetch
+//     console.error('Error:', error);
+//   });
 
-const getCategory = (str) => {
-  return str.replace(/\//g, " ").split(" ")[4]
-}
+// const getCategory = (str) => {
+//   return str.replaceAll("/", " ").split(" ")[4]
+// }
+
+const imgMain = $('#img-main');
+const categoryInput = $('#categoryInput');
+
+ // Function to fetch a new image from the Foodish API
+ const fetchNewImage = () => {
+    fetch(foodish)
+      .then(response => response.json())
+      .then(data => {
+        const imgURL = data.image;
+        const category = getCategory(imgURL);
+
+        // Update the UI
+        imgMain.attr('src', imgURL);
+        categoryInput.attr('value', category);
+      })
+      .catch(error => {
+        // Handle any errors that occurred during the fetch
+        console.error('Error:', error);
+      });
+  };
+
+  // Initial image fetch
+  fetchNewImage();
+
+//   This finds the category name from within image link
+  const getCategory = str => {
+    return str.replaceAll("/", ' ').split(' ')[4];
+  };
+
+  // Event listener for the "Next" button
+  $('#next-btn').on('click', fetchNewImage);
