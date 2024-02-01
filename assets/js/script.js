@@ -7,7 +7,7 @@ const addRecipe = true;
 const nutrition = true;
 const API_KEY = "08bfac6db5a24fa780d937a91262a007";
 const queryURL =
-`
+  `
 https://api.spoonacular.com/recipes/complexSearch?
 &query=${query}
 &diet=${diet}
@@ -27,23 +27,31 @@ https://api.spoonacular.com/recipes/complexSearch?
 //     console.log(data);
 //   })
 
+// let categoryInput = $('#categoryInput').attr("value", query);
+// console.log(categoryInput);
+
 const foodish = "https://foodish-api.com/api/"
 
 // a GET request to the API endpoint
 fetch(foodish)
   .then(response => response.json())
   .then(data => {
-    // Log the image URL from the response
+    // console.log(data);
 
-    console.log(data);
-    // console.log('Image URL:', data.image);
+    const imgURL = data.image;
+    // console.log(imgURL);
+    query = getCategory(imgURL);
+    // console.log(query);
 
-    const image = data.image
+    $('#img-main').attr('src', imgURL);
 
-    $('#img-main').attr('src', image);
+    $('#categoryInput').attr("value", query);
   })
-
   .catch(error => {
     // Handle any errors that occurred during the fetch
     console.error('Error:', error);
   });
+
+const getCategory = (str) => {
+  return str.replace(/\//g, " ").split(" ")[4]
+}
