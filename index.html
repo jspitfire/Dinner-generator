@@ -8,29 +8,29 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 	<link rel="stylesheet" href="./assets/css/styles.css" />
-	<title>Project 1</title>
+	<title>Din-Gen</title>
 </head>
 
 <body>
 
-	<nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
+	<!--! Navbar -->
+	<nav id="navbar" class="navbar navbar-expand-lg bg-body-tertiary mb-5">
 		<div class="container">
-			<a class="navbar-brand" href="#">Logo</a>
+			<a class="navbar-brand fs-4" href="#">Logo</a>
 			<h4>Din-Gen</h4>
 			<div class="navbar-nav flex-row">
-				<a class="nav-link px-1" href="#">Home</a>
-				<a class="nav-link px-1" href="#">Contact</a>
+				<a class="nav-link px-1 fs-4" href="#">About</a>
 			</div>
 		</div>
 	</nav>
 
 	<main>
 		<div class="container-fluid">
-			<div class="row">
+			<div class="row justify-content-between">
 
-
-				<!-- Modal -->
-				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<!--! Modal -->
+				<div id="modal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+					aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -41,39 +41,119 @@
 								...
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Save changes</button>
+								<button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+								<!-- <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button> -->
+								<button class="btn btn-primary" type="button" data-bs-dismiss="modal" data-bs-toggle="offcanvas"
+									data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+									Recipe
+								</button>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-3">
-					<h6 class="text-center">Favourites</h6>
-					<div class="row row-cols-2">
-						<img class="col p-1" src="https://foodish-api.com/images/burger/burger66.jpg" alt="" width="100%">
-						<img class="col p-1" src="https://foodish-api.com/images/burger/burger66.jpg" alt="" width="100%">
-						<img class="col p-1" src="https://foodish-api.com/images/burger/burger66.jpg" alt="" width="100%">
-						<img class="col p-1" src="https://foodish-api.com/images/burger/burger66.jpg" alt="" width="100%">
+				<!--! Favourites Off-Canvas -->
+				<div id="favourites-container" class="d-flex flex-column align-items-center col-2">
+					<button class="btn btn-primary" type="button" data-bs-target="#favourites" data-bs-toggle="offcanvas"
+						aria-controls="offcanvasWithBothOptions">Favourites</button>
+
+					<div id="favourites" class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1"
+						aria-labelledby="offcanvasWithBothOptionsLabel">
+						<div class="offcanvas-header">
+							<h5 class="offcanvas-title">Favourites</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+						</div>
+						<div id="favourites-body" class="offcanvas-body d-flex flex-wrap">
+
+							<button class="btn btn-primary w-100 mb-2 py-2" type="button" data-bs-toggle="offcanvas"
+								data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
+								<img src="https://foodish-api.com/images/pizza/pizza10.jpg" class="fav-1 img-fave" />
+							</button>
+							<button class="btn btn-primary w-100 mb-2 py-2" type="button" data-bs-toggle="offcanvas"
+								data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
+								<img src="https://foodish-api.com/images/rice/rice10.jpg" class="fav-1 img-fave" />
+							</button>
+							<button class="btn btn-primary w-100 mb-2 py-2" type="button" data-bs-toggle="offcanvas"
+								data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
+								<img src="https://foodish-api.com/images/biryani/biryani15.jpg" class="fav-2 img-fave" />
+							</button>
+							<button class="btn btn-primary w-100 mb-2 py-2" type="button" data-bs-toggle="offcanvas"
+								data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
+								<img src="https://foodish-api.com/images/dosa/dosa53.jpg" class="fav-3 img-fave" />
+							</button>
+							<button class="btn btn-primary w-100 mb-2 py-2" type="button" data-bs-toggle="offcanvas"
+								data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
+								<img src="https://foodish-api.com/images/biryani/biryani15.jpg" class="fav-2 img-fave" />
+							</button>
+							<button class="btn btn-primary w-100 mb-2 py-2" type="button" data-bs-toggle="offcanvas"
+								data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
+								<img src="https://foodish-api.com/images/pizza/pizza39.jpg" class="fav-4 img-fave" />
+							</button>
+
+						</div>
 					</div>
 
 				</div>
 
-				<div class="d-flex flex-column col-6 px-5">
+				<!--! Center Content -->
+				<div id="center-container" class="col-8 w-50">
 					<div class="d-flex justify-content-between mb-2">
-						<button type="button" class="btn btn-primary">Back</button>
-						<button type="button" class="btn btn-primary">Next</button>
+						<button id="back-btn" type="button" class="btn btn-primary">Back</button>
+						<!-- Button trigger modal -->
+						<!-- <button type="button" class="mx-auto btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+							Recipe
+						</button> -->
+						<button id="next-btn" type="button" class="btn btn-primary">Next</button>
 					</div>
-					<img  id="image" class="mb-2" src="https://foodish-api.com/images/burger/burger66.jpg" alt="" width="100%">
-					<!-- Button trigger modal -->
-					<button type="button" class="mx-auto btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-						Recipe
-					</button>
+					<img id="img-main" class="mb-2">
 				</div>
 
-				<div class="col-3">test</div>
+				<!--! Recipe Off-Canvas -->
+				<div id="recipe-container" class="d-flex flex-column align-items-center col-2">
+
+					<button class="btn btn-primary" type="button" data-bs-target="#recipe" data-bs-toggle="offcanvas"
+						aria-controls="offcanvasWithBothOptions">Recipe</button>
+
+					<div id="recipe" class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1"
+						aria-labelledby="offcanvasWithBothOptionsLabel">
+						<div class="offcanvas-header">
+							<h5 class="offcanvas-title">Generate a recipe</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+						</div>
+						<div id="recipe-body" class="offcanvas-body">
+
+							<p>Seperate queries by commas.<br>
+								(e.g. Tomato, lettuce...)</p>
+
+							<form>
+								<div class="form-floating mb-3">
+									<input id="queryInput" type="text" class="form-control" placeholder="Dish" value="Pizza">
+									<label for="queryInput">Dish</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input id="dietInput" type="text" class="form-control" placeholder="Diet">
+									<label for="dietInput">Diet</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input id="intoleranceInput" type="text" class="form-control" placeholder="Intolerances">
+									<label for="IntoleranceInput">Intolerances</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input id="includeInput" type="text" class="form-control" placeholder="Include">
+									<label for="includeInput">Include</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input id="excludeInput" type="text" class="form-control" placeholder="Exclude">
+									<label for="excludeInput">Exclude</label>
+								</div>
+								<button type="submit" class="btn btn-danger">Generate</button>
+							</form>
+
+						</div>
+					</div>
+				</div>
+
 			</div>
-		</div>
 
 	</main>
 
