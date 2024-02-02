@@ -64,13 +64,36 @@ const fetchRecipe = (e) => {
   console.log(queryURL);
 
   fetch(queryURL)
-    .then(function (response) {
+    .then((response) => {
       return response.json();
     })
-    .then(function (data) {
+    .then((data) => {
       console.log(data);
+      //pull out recipe from data
+      const titles = data.results.map(recipe => recipe.title);
+      displayRecipeTitles(titles);
+    })
+    .catch((error) => {
+      console.log(error);
     })
 }
+
+
+// Function to display recipe titles as buttons
+const displayRecipeTitles = (titles) => {
+  const titlesContainer = $('#recipe-body');
+  titlesContainer.empty();
+  titles.forEach(title => {
+    const button = $('<button>');
+    button.addClass('btn btn-primary');
+    button.attr('type', 'button');
+    button.text(title);
+    titlesContainer.append(button);
+    button.on('click', () => {
+      console.log('Button clicked for title', title)
+    })
+  })
+};
 
 // Event listener for the "Next" button
 $('#next-btn').on('click', fetchNewImage);
