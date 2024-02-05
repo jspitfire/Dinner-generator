@@ -1,5 +1,8 @@
 const imgMain = $("#img-main");
 const categoryInput = $("#categoryInput");
+const listContainer = $("#list-container");
+const recipeContainer = $("#recipe-container");
+const formContainer = $("#form-container");
 
 const foodish = "https://foodish-api.com/api/";
 
@@ -80,8 +83,9 @@ const fetchRecipe = (e) => {
 
 // Function to display recipe titles as buttons
 const displayRecipeTitles = (titles, data) => {
-  const titlesContainer = $("#recipe-body");
-  titlesContainer.empty();
+  listContainer.empty();
+  listContainer.removeClass("d-none");
+  formContainer.addClass("d-none");
 
   const dataArray = data.results; // Convert data.results to an array
 
@@ -90,7 +94,7 @@ const displayRecipeTitles = (titles, data) => {
     button.addClass("btn btn-primary");
     button.attr("type", "button");
     button.text(title);
-    titlesContainer.append(button);
+    listContainer.append(button);
 
     button.on("click", (e) => {
       const buttonText = e.target.innerText;

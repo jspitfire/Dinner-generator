@@ -94,32 +94,37 @@
 						</div>
 						<div id="recipe-body" class="offcanvas-body">
 
-							<p>Seperate queries by commas.<br>
-								(e.g. tomato, lettuce...)</p>
+							<div id="recipe-container" class="d-none"></div>
 
-							<form id="form">
-								<div class="form-floating mb-3">
-									<input id="categoryInput" type="text" class="form-control" placeholder="Category" value="Pizza">
-									<label for="categoryInput">Category</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input id="dietInput" type="text" class="form-control" placeholder="Diet">
-									<label for="dietInput">Diet</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input id="intoleranceInput" type="text" class="form-control" placeholder="Intolerances">
-									<label for="IntoleranceInput">Intolerances</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input id="includeInput" type="text" class="form-control" placeholder="Include">
-									<label for="includeInput">Include</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input id="excludeInput" type="text" class="form-control" placeholder="Exclude">
-									<label for="excludeInput">Exclude</label>
-								</div>
-								<button id="submit-form" type="submit" class="btn btn-danger">Generate</button>
-							</form>
+							<div id="list-container" class="d-none"></div>
+
+							<div id="form-container" class="">
+								<p>Seperate queries by commas.<br>
+									(e.g. tomato, lettuce...)</p>
+								<form id="form">
+									<div class="form-floating mb-3">
+										<input id="categoryInput" type="text" class="form-control" placeholder="Category" value="Pizza">
+										<label for="categoryInput">Category</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input id="dietInput" type="text" class="form-control" placeholder="Diet">
+										<label for="dietInput">Diet</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input id="intoleranceInput" type="text" class="form-control" placeholder="Intolerances">
+										<label for="IntoleranceInput">Intolerances</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input id="includeInput" type="text" class="form-control" placeholder="Include">
+										<label for="includeInput">Include</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input id="excludeInput" type="text" class="form-control" placeholder="Exclude">
+										<label for="excludeInput">Exclude</label>
+									</div>
+									<button id="submit-form" type="submit" class="btn btn-danger">Generate</button>
+								</form>
+							</div>
 
 						</div>
 					</div>
