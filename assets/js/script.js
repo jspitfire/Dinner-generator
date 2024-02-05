@@ -3,6 +3,9 @@ const categoryInput = $("#categoryInput");
 const listContainer = $("#list-container");
 const recipeContainer = $("#recipe-container");
 const formContainer = $("#form-container");
+const recipeOffcanvas = $("#recipe");
+const recipeTitle = $("#recipe-title");
+const favouritesBtn = $("#favourites-btn")
 
 const foodish = "https://foodish-api.com/api/";
 
@@ -74,7 +77,7 @@ const fetchRecipe = (e) => {
       console.log(data);
       //pull out recipe from data
       const titles = data.results.map((recipe) => recipe.title);
-      displayRecipeTitles(titles, data);
+      displayRecipeTitles(titles, data, query);
     })
     .catch((error) => {
       console.log(error);
@@ -82,10 +85,11 @@ const fetchRecipe = (e) => {
 };
 
 // Function to display recipe titles as buttons
-const displayRecipeTitles = (titles, data) => {
+const displayRecipeTitles = (titles, data, query) => {
   listContainer.empty();
   listContainer.removeClass("d-none");
   formContainer.addClass("d-none");
+  recipeTitle.text(`Generate ${query} recipe`);
 
   const dataArray = data.results; // Convert data.results to an array
 
@@ -97,12 +101,34 @@ const displayRecipeTitles = (titles, data) => {
     listContainer.append(button);
 
     button.on("click", (e) => {
+      e.preventDefault();
       const buttonText = e.target.innerText;
       const recipe = dataArray.find((recipe) => buttonText === recipe.title);
       const steps = recipe.analyzedInstructions;
       console.log(steps);
+      displayRecipe(steps, title);
     });
   });
+};
+
+const displayRecipe = (steps, title) => {
+  recipeContainer.empty();
+  recipeContainer.removeClass("d-none");
+  listContainer.addClass("d-none");
+  recipeOffcanvas.addClass("w-75");
+  favouritesBtn.removeClass("d-none");
+  recipeTitle.text(title);
+
+  const recipeOl = $("<ol>");
+
+  steps.forEach((instruction) => {
+    instruction.steps.forEach((step) => {
+      const recipeStepsLi = $("<li>").text(step.step);
+      recipeOl.append(recipeStepsLi);
+    });
+  });
+
+  recipeContainer.append(recipeOl);
 };
 
 // Event listener for the "Next" button
