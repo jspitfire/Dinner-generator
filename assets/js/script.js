@@ -46,7 +46,7 @@ const fetchNewImage = () => {
       let previousImages = JSON.parse(localStorage.getItem("previousImages")) || [];
 
       // console.log(previousImages);
-      previousImages.push(imgMain.attr("src"));
+      previousImages.push(imgURL);
 
       localStorage.setItem("previousImages", JSON.stringify(previousImages));
 
@@ -202,9 +202,10 @@ const addToFavorites = () => {
     $("#liveToast .toast-body").text("Already added!");
   } else {
     const favouriteEl = `
-      <button class="favourite-el btn btn-primary mb-2 py-2" type="button" data-bs-toggle="offcanvas"
+      <button class="favourite-el btn btn-primary mb-2 py-2 position-relative" type="button" data-bs-toggle="offcanvas"
       data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
         <img src=${imgSrc} class="img-fave"/>
+        <button type="button" class="favourite-delete btn-close position-absolute top-25"></button>
       </button>
     `;
 
