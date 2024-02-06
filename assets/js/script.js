@@ -97,6 +97,8 @@ const displayRecipeTitles = (titles, data) => {
       const recipe = dataArray.find((recipe) => buttonText === recipe.title);
       const steps = recipe.analyzedInstructions;
       console.log(steps);
+
+      
     });
   });
 };
