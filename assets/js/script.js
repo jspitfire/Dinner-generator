@@ -103,7 +103,7 @@ const fetchRecipe = (e) => {
   const number = 2;
   const API_KEY_1 = "08bfac6db5a24fa780d937a91262a007";
   const API_KEY_2 = "0da42d4e08354eeeaac861bfc5934b79";
-  const API_KEY_3 = "a68959599cae4bb19949800689922be7";
+  const API_KEY_3 = "a720e49ef1384305a7eec6386dfe23b6";
   const queryURL = `
 https://api.spoonacular.com/recipes/complexSearch?
 &query=${query}
@@ -279,7 +279,7 @@ const displayFavoriteRecipe = (favourite) => {
   const number = 2;
   const API_KEY_1 = "08bfac6db5a24fa780d937a91262a007";
   const API_KEY_2 = "0da42d4e08354eeeaac861bfc5934b79";
-  const API_KEY_3 = "a68959599cae4bb19949800689922be7";
+  const API_KEY_3 = "a720e49ef1384305a7eec6386dfe23b6";
   const queryURL = `
 https://api.spoonacular.com/recipes/complexSearch?
 &query=${query}
