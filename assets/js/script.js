@@ -46,7 +46,7 @@ const fetchNewImage = () => {
       let previousImages = JSON.parse(localStorage.getItem("previousImages")) || [];
 
       // console.log(previousImages);
-      previousImages.push(imgURL);
+      previousImages.push(imgMain.attr("src"));
 
       localStorage.setItem("previousImages", JSON.stringify(previousImages));
 
@@ -68,9 +68,9 @@ const goBack = () => {
   let previousImages = JSON.parse(localStorage.getItem("previousImages")) || [];
 
   if (previousImages.length === 0) return;
-  console.log("test");
-  let previousImgSrc = previousImages[previousImages.length - 2];
-  previousImages.pop();
+
+  let previousImgSrc = previousImages.pop();
+
   localStorage.setItem("previousImages", JSON.stringify(previousImages));
 
   imgMain.attr("src", previousImgSrc);
@@ -148,10 +148,7 @@ const displayRecipeTitles = (titles, data, query) => {
       const buttonText = e.target.innerText;
       const recipe = dataArray.find((recipe) => buttonText === recipe.title);
       const steps = recipe.analyzedInstructions;
-
-      saveTitle = buttonText;
-
-      displayRecipe(steps, title);
+      
     });
   });
 };
@@ -202,10 +199,9 @@ const addToFavorites = () => {
     $("#liveToast .toast-body").text("Already added!");
   } else {
     const favouriteEl = `
-      <button class="favourite-el btn btn-primary mb-2 py-2 position-relative" type="button" data-bs-toggle="offcanvas"
+      <button class="favourite-el btn btn-primary mb-2 py-2" type="button" data-bs-toggle="offcanvas"
       data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
         <img src=${imgSrc} class="img-fave"/>
-        <button type="button" class="favourite-delete btn-close position-absolute top-25"></button>
       </button>
     `;
 
