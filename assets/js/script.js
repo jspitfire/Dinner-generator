@@ -11,6 +11,7 @@ const favouritesBtn = $("#favourites-btn");
 const favouritesBody = $("#favourites-body");
 const form = $("#form");
 const nextBtn = $("#next-btn");
+const backBtn = $("#back-btn");
 
 let displayedRecipeImgSrc;
 let saveImgSrc;
@@ -41,6 +42,14 @@ const fetchNewImage = () => {
       saveImgSrc = imgURL;
       saveCategory = category;
 
+      // Add history to local storage
+      let previousImages = JSON.parse(localStorage.getItem("previousImages")) || [];
+
+      // console.log(previousImages);
+      previousImages.push(imgMain.attr("src"));
+
+      localStorage.setItem("previousImages", JSON.stringify(previousImages));
+
       // Update the UI
       imgMain.attr("src", imgURL);
       categoryInput.attr("value", category);
@@ -53,6 +62,19 @@ const fetchNewImage = () => {
 
 // Initial image fetch
 fetchNewImage();
+
+// Function to go back to the previous image
+const goBack = () => {
+  let previousImages = JSON.parse(localStorage.getItem("previousImages")) || [];
+
+  if (previousImages.length === 0) return;
+
+  let previousImgSrc = previousImages.pop();
+
+  localStorage.setItem("previousImages", JSON.stringify(previousImages));
+
+  imgMain.attr("src", previousImgSrc);
+};
 
 // This finds the category name from within image link
 const getCategory = (str) => {
@@ -284,6 +306,7 @@ https://api.spoonacular.com/recipes/complexSearch?
 
 // Event listeners
 nextBtn.on("click", fetchNewImage);
+backBtn.on("click", goBack);
 form.on("submit", (e) => fetchRecipe(e));
 generateBtn.on("click", showForm);
 formBtn.on("click", showForm);
