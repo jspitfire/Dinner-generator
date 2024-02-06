@@ -19,7 +19,9 @@
 			<a class="navbar-brand fs-4 text-white" href="#">Logo</a>
 			<h4 class="text-white">Din-Gen</h4>
 			<div class="navbar-nav flex-row">
-				<a class="nav-link px-1 fs-4 text-white" href="#">About</a>
+				<button id="open-favourites" class="btn btn-primary" type="button" data-bs-target="#favourites" data-bs-toggle="offcanvas"
+					aria-controls="offcanvasWithBothOptions">Favourites</button>
+				<!-- <a class="nav-link px-1 fs-4 text-white" href="#">About</a> -->
 			</div>
 		</div>
 	</nav>
@@ -30,14 +32,15 @@
 
 				<!--! Favourites Off-Canvas -->
 				<div id="favourites-container" class="d-flex flex-column align-items-center col-2">
-					<button class="btn btn-primary" type="button" data-bs-target="#favourites" data-bs-toggle="offcanvas"
-						aria-controls="offcanvasWithBothOptions">Favourites</button>
+					<!-- <button class="btn btn-primary" type="button" data-bs-target="#favourites" data-bs-toggle="offcanvas"
+						aria-controls="offcanvasWithBothOptions">Favourites</button> -->
 
-					<div id="favourites" class="offcanvas offcanvas-start w-25" data-bs-scroll="true" tabindex="-1"
+					<div id="favourites" class="offcanvas offcanvas-start w-25" data-bs-backdrop="static" data-bs-scroll="true" tabindex="-1"
 						aria-labelledby="offcanvasWithBothOptionsLabel">
 						<div class="offcanvas-header">
 							<h5 class="offcanvas-title">Favourites</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+							<button id="favourite-close" type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+								aria-label="Close"></button>
 						</div>
 						<div id="favourites-body" class="offcanvas-body">
 
@@ -50,25 +53,29 @@
 				<div id="center-container" class="col-8 w-50">
 					<div class="d-flex justify-content-between mb-2">
 						<button id="back-btn" type="button" class="btn btn-primary">Back</button>
+						<button id="generate-btn" class="btn btn-success" type="button" data-bs-target="#recipe"
+							data-bs-toggle="offcanvas" aria-controls="offcanvasWithBothOptions">Generate Recipe</button>
 						<button id="next-btn" type="button" class="btn btn-primary">Next</button>
 					</div>
-					<img id="img-main" class="mb-2">
+					<img id="img-main" class="mb-2 ">
 				</div>
 
 				<!--! Recipe Off-Canvas -->
 				<div id="recipe-offcanvas" class="d-flex flex-column align-items-center col-2">
 
-					<button id="generate-btn" class="btn btn-primary" type="button" data-bs-target="#recipe"
-						data-bs-toggle="offcanvas" aria-controls="offcanvasWithBothOptions">Generate</button>
+					<!-- <button id="generate-btn" class="btn btn-primary" type="button" data-bs-target="#recipe"
+						data-bs-toggle="offcanvas" aria-controls="offcanvasWithBothOptions">Generate</button> -->
 
-					<div id="recipe" class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1"
+					<div id="recipe" class="offcanvas offcanvas-end" data-bs-backdrop="static" data-bs-scroll="true" tabindex="-1"
 						aria-labelledby="offcanvasWithBothOptionsLabel">
 
 						<div class="offcanvas-header">
 							<h5 id="recipe-title" class="offcanvas-title">Generate a recipe</h5>
-							<button id="favourites-btn" class="d-none btn" type="button"><i id="favourite-icon" class="fa-solid fa-heart fs-4"></i></button>
+							<button id="favourites-btn" class="d-none btn" type="button"><i id="favourite-icon"
+									class="fa-solid fa-heart fs-4"></i></button>
 							<button id="form-btn" class="btn btn-primary d-none" type="button">Back to form</button>
-							<button class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" type="button"></button>
+							<button id="recipe-close" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"
+								type="button"></button>
 						</div>
 
 						<div id="recipe-body" class="offcanvas-body">
@@ -113,13 +120,14 @@
 
 			<!--! Toast Component -->
 			<div class="toast-container position-fixed bottom-0 end-0 p-3">
-				<div id="liveToast" class="toast align-items-center text-bg-primary border-0 w-100" role="alert" aria-live="assertive"
-					aria-atomic="true">
+				<div id="liveToast" class="toast align-items-center text-bg-primary border-0 w-100" role="alert"
+					aria-live="assertive" aria-atomic="true">
 					<div class="d-flex">
 						<div class="toast-body">
 							Added to favourites
 						</div>
-						<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+						<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+							aria-label="Close"></button>
 					</div>
 				</div>
 			</div>
