@@ -12,6 +12,9 @@ const favouritesBody = $("#favourites-body");
 const form = $("#form");
 const nextBtn = $("#next-btn");
 const backBtn = $("#back-btn");
+const closeRecipeBtn = $("#recipe-close");
+const closeFavouriteBtn = $("#favourite-close");
+const openFavouritesBtn = $("#open-favourites");
 
 let displayedRecipeImgSrc;
 let saveImgSrc;
@@ -184,6 +187,7 @@ const showForm = () => {
   recipeContainer.addClass("d-none");
   favouritesBtn.addClass("d-none");
   formBtn.addClass("d-none");
+  imgMain.addClass("filter-blur");
 
   recipeTitle.text("Generate recipe")
 };
@@ -315,4 +319,14 @@ $(".favourite-el").on("click", (e) => {
   const imgSrc = $(e.currentTarget).find("img").attr("src");
   const favourite = JSON.parse(localStorage.getItem("favourites")).find((fav) => fav.imgSrc === imgSrc);
   displayFavoriteRecipe(favourite);
+});
+closeRecipeBtn.on("click", () => {
+  imgMain.removeClass("filter-blur");
+
+});
+openFavouritesBtn.on("click", () => {
+  imgMain.addClass("filter-blur");
+})
+closeFavouriteBtn.on("click", () => {
+  imgMain.removeClass("filter-blur");
 });
