@@ -12,7 +12,15 @@ const favouritesBody = $("#favourites-body");
 const form = $("#form");
 const nextBtn = $("#next-btn");
 
-let imgSrc;
+let displayedRecipeImgSrc;
+let saveImgSrc;
+let saveCategory;
+let saveTitle;
+let query;
+let diet;
+let intolerances;
+let include;
+let exclude;
 
 const favouritesToast = new bootstrap.Toast(document.getElementById('liveToast'));
 
@@ -28,8 +36,10 @@ const fetchNewImage = () => {
     .then((response) => response.json())
     .then((data) => {
       const imgURL = data.image;
-      imgSrc = imgURL;
       const category = getCategory(imgURL);
+
+      saveImgSrc = imgURL;
+      saveCategory = category;
 
       // Update the UI
       imgMain.attr("src", imgURL);
@@ -44,7 +54,7 @@ const fetchNewImage = () => {
 // Initial image fetch
 fetchNewImage();
 
-//   This finds the category name from within image link
+// This finds the category name from within image link
 const getCategory = (str) => {
   return str.replaceAll("/", " ").split(" ")[4];
 };
@@ -52,23 +62,23 @@ const getCategory = (str) => {
 const fetchRecipe = (e) => {
   e.preventDefault();
 
-  // const form = e.target;
   const categoryInput = $("#categoryInput").val();
   const dietInput = $("#dietInput").val();
   const intolerancesInput = $("#intoleranceInput").val();
   const includeInput = $("#includeInput").val();
   const excludeInput = $("#excludeInput").val();
 
-  let query = categoryInput;
-  let diet = dietInput;
-  let intolerances = intolerancesInput;
-  let include = includeInput;
-  let exclude = excludeInput;
+  query = categoryInput;
+  diet = dietInput;
+  intolerances = intolerancesInput;
+  include = includeInput;
+  exclude = excludeInput;
   const addRecipe = true;
   const nutrition = true;
   const number = 2;
   const API_KEY_1 = "08bfac6db5a24fa780d937a91262a007";
   const API_KEY_2 = "0da42d4e08354eeeaac861bfc5934b79";
+  const API_KEY_3 = "a68959599cae4bb19949800689922be7";
   const queryURL = `
 https://api.spoonacular.com/recipes/complexSearch?
 &query=${query}
@@ -79,18 +89,14 @@ https://api.spoonacular.com/recipes/complexSearch?
 &addRecipeInformation=${addRecipe}
 &addRecipeNutrition=${nutrition}
 &number=${number}
-&apiKey=${API_KEY_1}
+&apiKey=${API_KEY_3}
 `;
-
-  console.log(queryURL);
 
   fetch(queryURL)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
-      //pull out recipe from data
       const titles = data.results.map((recipe) => recipe.title);
       displayRecipeTitles(titles, data, query);
     })
@@ -120,7 +126,8 @@ const displayRecipeTitles = (titles, data, query) => {
       const buttonText = e.target.innerText;
       const recipe = dataArray.find((recipe) => buttonText === recipe.title);
       const steps = recipe.analyzedInstructions;
-      console.log(steps);
+
+      saveTitle = buttonText;
 
       displayRecipe(steps, title);
     });
@@ -132,6 +139,7 @@ const displayRecipe = (steps, title) => {
   recipeContainer.removeClass("d-none");
   favouritesBtn.removeClass("d-none");
   formBtn.removeClass("d-none");
+  formContainer.addClass("d-none");
   listContainer.addClass("d-none");
   recipeOffcanvas.addClass("w-75");
   recipeTitle.text(title);
@@ -146,12 +154,13 @@ const displayRecipe = (steps, title) => {
   });
 
   recipeContainer.append(recipeOl);
+  updateFavouriteIcon(saveImgSrc);
 };
 
 const showForm = () => {
   formContainer.removeClass("d-none");
   recipeOffcanvas.removeClass("w-75");
-  recipeOffcanvas.addClass("w-25");
+  recipeOffcanvas.addClass("w-50");
   listContainer.addClass("d-none");
   recipeContainer.addClass("d-none");
   favouritesBtn.addClass("d-none");
@@ -160,17 +169,118 @@ const showForm = () => {
   recipeTitle.text("Generate recipe")
 };
 
-const addToFavorites = (imgSrc) => {
-  const favouriteEl =
-    `
-  <button id="favourite-el" class="btn btn-primary mb-2 py-2" type="button" data-bs-toggle="offcanvas"
-  data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
-    <img src=${imgSrc} class="img-fave"/>
-  </button>
-  `
+const addToFavorites = () => {
+  const imgSrc = saveImgSrc;
+  const recipeImgSrc = displayedRecipeImgSrc;
+  const favourites = JSON.parse(localStorage.getItem("favourites")) || [];
 
-  favouritesBody.append(favouriteEl);
+  const exists = favourites.some(fav => fav.imgSrc === imgSrc || fav.imgSrc === recipeImgSrc);
+
+  if (exists) {
+    $("#liveToast .toast-body").text("Already added!");
+  } else {
+    const favouriteEl = `
+      <button class="favourite-el btn btn-primary mb-2 py-2" type="button" data-bs-toggle="offcanvas"
+      data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
+        <img src=${imgSrc} class="img-fave"/>
+      </button>
+    `;
+
+    favouritesBody.prepend(favouriteEl);
+
+    saveFavouritesToLocalStorage();
+    updateFavouriteIcon(imgSrc);
+
+    $("#liveToast .toast-body").text("Added to favourites!");
+  }
+
+  showToast();
 };
+
+
+const saveFavouritesToLocalStorage = () => {
+  let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+
+  favourites.unshift({
+    imgSrc: saveImgSrc,
+    category: saveCategory,
+    title: saveTitle,
+    query: query,
+    diet: diet,
+    intolerances: intolerances,
+    include: include,
+    exclude: exclude
+  });
+
+  localStorage.setItem("favourites", JSON.stringify(favourites));
+}
+
+const loadFavouritesFromLocalStorage = () => {
+  let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+
+  favourites.forEach(favourite => {
+    const favouriteEl = `
+        <button class="favourite-el btn btn-primary mb-2 py-2" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
+          <img src=${favourite.imgSrc} class="img-fave"/>
+        </button>
+      `;
+    favouritesBody.append(favouriteEl);
+  });
+};
+
+loadFavouritesFromLocalStorage();
+
+const updateFavouriteIcon = (imgSrc) => {
+  const favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+  let isFavorite = favourites.some(fav => fav.imgSrc === imgSrc);
+
+  if (isFavorite) {
+    $("#favourite-icon").addClass("text-danger");
+  } else {
+    $("#favourite-icon").removeClass("text-danger");
+  }
+};
+
+const displayFavoriteRecipe = (favourite) => {
+  const { title, query, diet, intolerances, include, exclude, imgSrc } = favourite;
+
+  displayedRecipeImgSrc = imgSrc;
+
+  const addRecipe = true;
+  const nutrition = true;
+  const number = 2;
+  const API_KEY_1 = "08bfac6db5a24fa780d937a91262a007";
+  const API_KEY_2 = "0da42d4e08354eeeaac861bfc5934b79";
+  const API_KEY_3 = "a68959599cae4bb19949800689922be7";
+  const queryURL = `
+https://api.spoonacular.com/recipes/complexSearch?
+&query=${query}
+&diet=${diet}
+&intolerances=${intolerances}
+&includeIngredients=${include}
+&excludeIngredients=${exclude}
+&addRecipeInformation=${addRecipe}
+&addRecipeNutrition=${nutrition}
+&number=${number}
+&apiKey=${API_KEY_3}
+  `;
+
+  fetch(queryURL)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      const recipe = data.results.find((recipe) => recipe.title === title);
+      const steps = recipe.analyzedInstructions;
+      console.log(steps);
+      displayRecipe(steps, title);
+      updateFavouriteIcon(imgSrc);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
 
 // Event listeners
 nextBtn.on("click", fetchNewImage);
@@ -178,6 +288,11 @@ form.on("submit", (e) => fetchRecipe(e));
 generateBtn.on("click", showForm);
 formBtn.on("click", showForm);
 favouritesBtn.on("click", () => {
-  addToFavorites(imgSrc);
+  addToFavorites();
   showToast();
+});
+$(".favourite-el").on("click", (e) => {
+  const imgSrc = $(e.currentTarget).find("img").attr("src");
+  const favourite = JSON.parse(localStorage.getItem("favourites")).find((fav) => fav.imgSrc === imgSrc);
+  displayFavoriteRecipe(favourite);
 });
