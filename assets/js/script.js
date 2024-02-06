@@ -3,18 +3,32 @@ const categoryInput = $("#categoryInput");
 const listContainer = $("#list-container");
 const recipeContainer = $("#recipe-container");
 const formContainer = $("#form-container");
+const generateBtn = $("#generate-btn");
+const formBtn = $("#form-btn")
 const recipeOffcanvas = $("#recipe");
 const recipeTitle = $("#recipe-title");
-const favouritesBtn = $("#favourites-btn")
+const favouritesBtn = $("#favourites-btn");
+const favouritesBody = $("#favourites-body");
+const form = $("#form");
+const nextBtn = $("#next-btn");
 
-const foodish = "https://foodish-api.com/api/";
+let imgSrc;
+
+const favouritesToast = new bootstrap.Toast(document.getElementById('liveToast'));
+
+const showToast = () => {
+  favouritesToast.show();
+};
 
 // Function to fetch a new image from the Foodish API
 const fetchNewImage = () => {
+  const foodish = "https://foodish-api.com/api/";
+
   fetch(foodish)
     .then((response) => response.json())
     .then((data) => {
       const imgURL = data.image;
+      imgSrc = imgURL;
       const category = getCategory(imgURL);
 
       // Update the UI
@@ -38,12 +52,12 @@ const getCategory = (str) => {
 const fetchRecipe = (e) => {
   e.preventDefault();
 
-  const form = e.target;
-  const categoryInput = form.querySelector("#categoryInput").value;
-  const dietInput = form.querySelector("#dietInput").value;
-  const intolerancesInput = form.querySelector("#intoleranceInput").value;
-  const includeInput = form.querySelector("#includeInput").value;
-  const excludeInput = form.querySelector("#excludeInput").value;
+  // const form = e.target;
+  const categoryInput = $("#categoryInput").val();
+  const dietInput = $("#dietInput").val();
+  const intolerancesInput = $("#intoleranceInput").val();
+  const includeInput = $("#includeInput").val();
+  const excludeInput = $("#excludeInput").val();
 
   let query = categoryInput;
   let diet = dietInput;
@@ -55,7 +69,8 @@ const fetchRecipe = (e) => {
   const number = 2;
   const API_KEY_1 = "08bfac6db5a24fa780d937a91262a007";
   const API_KEY_2 = "0da42d4e08354eeeaac861bfc5934b79";
-  const queryURL = `https://api.spoonacular.com/recipes/complexSearch?
+  const queryURL = `
+https://api.spoonacular.com/recipes/complexSearch?
 &query=${query}
 &diet=${diet}
 &intolerances=${intolerances}
@@ -64,7 +79,7 @@ const fetchRecipe = (e) => {
 &addRecipeInformation=${addRecipe}
 &addRecipeNutrition=${nutrition}
 &number=${number}
-&apiKey=${API_KEY_2}
+&apiKey=${API_KEY_1}
 `;
 
   console.log(queryURL);
@@ -95,7 +110,7 @@ const displayRecipeTitles = (titles, data, query) => {
 
   titles.forEach((title) => {
     const button = $("<button>");
-    button.addClass("btn btn-primary");
+    button.addClass("btn btn-primary w-100 mb-2");
     button.attr("type", "button");
     button.text(title);
     listContainer.append(button);
@@ -106,6 +121,7 @@ const displayRecipeTitles = (titles, data, query) => {
       const recipe = dataArray.find((recipe) => buttonText === recipe.title);
       const steps = recipe.analyzedInstructions;
       console.log(steps);
+
       displayRecipe(steps, title);
     });
   });
@@ -114,9 +130,10 @@ const displayRecipeTitles = (titles, data, query) => {
 const displayRecipe = (steps, title) => {
   recipeContainer.empty();
   recipeContainer.removeClass("d-none");
+  favouritesBtn.removeClass("d-none");
+  formBtn.removeClass("d-none");
   listContainer.addClass("d-none");
   recipeOffcanvas.addClass("w-75");
-  favouritesBtn.removeClass("d-none");
   recipeTitle.text(title);
 
   const recipeOl = $("<ol>");
@@ -131,6 +148,36 @@ const displayRecipe = (steps, title) => {
   recipeContainer.append(recipeOl);
 };
 
-// Event listener for the "Next" button
-$("#next-btn").on("click", fetchNewImage);
-$("#form").on("submit", (e) => fetchRecipe(e));
+const showForm = () => {
+  formContainer.removeClass("d-none");
+  recipeOffcanvas.removeClass("w-75");
+  recipeOffcanvas.addClass("w-25");
+  listContainer.addClass("d-none");
+  recipeContainer.addClass("d-none");
+  favouritesBtn.addClass("d-none");
+  formBtn.addClass("d-none");
+
+  recipeTitle.text("Generate recipe")
+};
+
+const addToFavorites = (imgSrc) => {
+  const favouriteEl =
+    `
+  <button id="favourite-el" class="btn btn-primary mb-2 py-2" type="button" data-bs-toggle="offcanvas"
+  data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
+    <img src=${imgSrc} class="img-fave"/>
+  </button>
+  `
+
+  favouritesBody.append(favouriteEl);
+};
+
+// Event listeners
+nextBtn.on("click", fetchNewImage);
+form.on("submit", (e) => fetchRecipe(e));
+generateBtn.on("click", showForm);
+formBtn.on("click", showForm);
+favouritesBtn.on("click", () => {
+  addToFavorites(imgSrc);
+  showToast();
+});
