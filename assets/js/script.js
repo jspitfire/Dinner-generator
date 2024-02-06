@@ -68,9 +68,9 @@ const goBack = () => {
   let previousImages = JSON.parse(localStorage.getItem("previousImages")) || [];
 
   if (previousImages.length === 0) return;
-
-  let previousImgSrc = previousImages.pop();
-
+  console.log("test");
+  let previousImgSrc = previousImages[previousImages.length - 2];
+  previousImages.pop();
   localStorage.setItem("previousImages", JSON.stringify(previousImages));
 
   imgMain.attr("src", previousImgSrc);
