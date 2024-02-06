@@ -14,12 +14,12 @@
 <body>
 
 	<!--! Navbar -->
-	<nav id="navbar" class="navbar navbar-expand-lg bg-body-tertiary mb-5">
-		<div class="container">
-			<a class="navbar-brand fs-4" href="#">Logo</a>
-			<h4>Din-Gen</h4>
+	<nav id="navbar" class="navbar navbar-expand-lg bg-primary mb-5">
+		<div class="container ">
+			<a class="navbar-brand fs-4 text-white" href="#">Logo</a>
+			<h4 class="text-white">Din-Gen</h4>
 			<div class="navbar-nav flex-row">
-				<a class="nav-link px-1 fs-4" href="#">About</a>
+				<a class="nav-link px-1 fs-4 text-white" href="#">About</a>
 			</div>
 		</div>
 	</nav>
@@ -39,32 +39,7 @@
 							<h5 class="offcanvas-title">Favourites</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 						</div>
-						<div id="favourites-body" class="offcanvas-body d-flex flex-wrap">
-
-							<button class="btn btn-primary w-100 mb-2 py-2" type="button" data-bs-toggle="offcanvas"
-								data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
-								<img src="https://foodish-api.com/images/pizza/pizza10.jpg" class="fav-1 img-fave" />
-							</button>
-							<button class="btn btn-primary w-100 mb-2 py-2" type="button" data-bs-toggle="offcanvas"
-								data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
-								<img src="https://foodish-api.com/images/rice/rice10.jpg" class="fav-1 img-fave" />
-							</button>
-							<button class="btn btn-primary w-100 mb-2 py-2" type="button" data-bs-toggle="offcanvas"
-								data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
-								<img src="https://foodish-api.com/images/biryani/biryani15.jpg" class="fav-2 img-fave" />
-							</button>
-							<button class="btn btn-primary w-100 mb-2 py-2" type="button" data-bs-toggle="offcanvas"
-								data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
-								<img src="https://foodish-api.com/images/dosa/dosa53.jpg" class="fav-3 img-fave" />
-							</button>
-							<button class="btn btn-primary w-100 mb-2 py-2" type="button" data-bs-toggle="offcanvas"
-								data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
-								<img src="https://foodish-api.com/images/biryani/biryani15.jpg" class="fav-2 img-fave" />
-							</button>
-							<button class="btn btn-primary w-100 mb-2 py-2" type="button" data-bs-toggle="offcanvas"
-								data-bs-target="#recipe" aria-controls="offcanvasWithBothOptions">
-								<img src="https://foodish-api.com/images/pizza/pizza39.jpg" class="fav-4 img-fave" />
-							</button>
+						<div id="favourites-body" class="offcanvas-body">
 
 						</div>
 					</div>
@@ -81,45 +56,54 @@
 				</div>
 
 				<!--! Recipe Off-Canvas -->
-				<div id="recipe-container" class="d-flex flex-column align-items-center col-2">
+				<div id="recipe-offcanvas" class="d-flex flex-column align-items-center col-2">
 
-					<button class="btn btn-primary" type="button" data-bs-target="#recipe" data-bs-toggle="offcanvas"
-						aria-controls="offcanvasWithBothOptions">Recipe</button>
+					<button id="generate-btn" class="btn btn-primary" type="button" data-bs-target="#recipe"
+						data-bs-toggle="offcanvas" aria-controls="offcanvasWithBothOptions">Generate</button>
 
 					<div id="recipe" class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1"
 						aria-labelledby="offcanvasWithBothOptionsLabel">
+
 						<div class="offcanvas-header">
-							<h5 class="offcanvas-title">Generate a recipe</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+							<h5 id="recipe-title" class="offcanvas-title">Generate a recipe</h5>
+							<button id="favourites-btn" class="d-none btn" type="button"><i id="favourite-icon" class="fa-solid fa-heart fs-4"></i></button>
+							<button id="form-btn" class="btn btn-primary d-none" type="button">Back to form</button>
+							<button class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" type="button"></button>
 						</div>
+
 						<div id="recipe-body" class="offcanvas-body">
 
-							<p>Seperate queries by commas.<br>
-								(e.g. tomato, lettuce...)</p>
+							<div id="recipe-container" class="d-none"></div>
 
-							<form id="form">
-								<div class="form-floating mb-3">
-									<input id="categoryInput" type="text" class="form-control" placeholder="Category" value="Pizza">
-									<label for="categoryInput">Category</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input id="dietInput" type="text" class="form-control" placeholder="Diet">
-									<label for="dietInput">Diet</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input id="intoleranceInput" type="text" class="form-control" placeholder="Intolerances">
-									<label for="IntoleranceInput">Intolerances</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input id="includeInput" type="text" class="form-control" placeholder="Include">
-									<label for="includeInput">Include</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input id="excludeInput" type="text" class="form-control" placeholder="Exclude">
-									<label for="excludeInput">Exclude</label>
-								</div>
-								<button id="submit-form" type="submit" class="btn btn-danger">Generate</button>
-							</form>
+							<div id="list-container" class="d-none"></div>
+
+							<div id="form-container" class="">
+								<p>Seperate queries by commas.<br>
+									(e.g. tomato, lettuce...)</p>
+								<form id="form">
+									<div class="form-floating mb-3">
+										<input id="categoryInput" type="text" class="form-control" placeholder="Category" value="Pizza">
+										<label for="categoryInput">Category</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input id="dietInput" type="text" class="form-control" placeholder="Diet">
+										<label for="dietInput">Diet</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input id="intoleranceInput" type="text" class="form-control" placeholder="Intolerances">
+										<label for="IntoleranceInput">Intolerances</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input id="includeInput" type="text" class="form-control" placeholder="Include">
+										<label for="includeInput">Include</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input id="excludeInput" type="text" class="form-control" placeholder="Exclude">
+										<label for="excludeInput">Exclude</label>
+									</div>
+									<button id="submit-form" type="submit" class="btn btn-danger">Generate</button>
+								</form>
+							</div>
 
 						</div>
 					</div>
@@ -127,15 +111,30 @@
 
 			</div>
 
+			<!--! Toast Component -->
+			<div class="toast-container position-fixed bottom-0 end-0 p-3">
+				<div id="liveToast" class="toast align-items-center text-bg-primary border-0 w-100" role="alert" aria-live="assertive"
+					aria-atomic="true">
+					<div class="d-flex">
+						<div class="toast-body">
+							Added to favourites
+						</div>
+						<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+					</div>
+				</div>
+			</div>
+
 	</main>
 
+	<!-- jQuery JS -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<!-- Bootstrap JS -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
-	<!-- jQuery JS -->
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script src="./assets/js/script.js"></script>
+	<!-- Font Awesome -->
+	<script type="text/javascript" src="https://kit.fontawesome.com/c1bc576c12.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="./assets/js/script.js"></script>
 </body>
 
 </html>
