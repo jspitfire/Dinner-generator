@@ -1,4 +1,5 @@
-/* Global Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap');/* Global Styles */
 :root {
 	/* FONT SIZES */
 	--F-XXS: 0.25rem;
@@ -24,6 +25,9 @@
 }
 
 body, html {
+	font-family: 'Arial', sans-serif;
+  background-color: var(--WHITE);
+  color: var(--BLACK);
 	background-image: url(../images/wooden-background.webp);
 	/* background-image: url(../images/brownchoppingboard.jpg); */
 	/* background-image: url(../images/blackchoppingboard.jpg); */
