@@ -151,11 +151,13 @@ const displayRecipeTitles = (titles, data, query) => {
       const buttonText = e.target.innerText;
       const recipe = dataArray.find((recipe) => buttonText === recipe.title);
       const steps = recipe.analyzedInstructions;
+      displayRecipe(steps, title);
+      
       
     });
   });
 };
-
+;
 const displayRecipe = (steps, title) => {
   recipeContainer.empty();
   recipeContainer.removeClass("d-none");
