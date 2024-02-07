@@ -16,11 +16,17 @@
 	<!--! Navbar -->
 	<nav id="navbar" class="navbar navbar-expand-lg bg-primary mb-5">
 		<div class="container ">
-			<a class="navbar-brand fs-4 text-white" href="#">Logo</a>
-			<h4 class="text-white">Din-Gen</h4>
+			<a class="navbar-brand fs-4 text-white" href="#">
+				<img src="./assets/images/din-gen-logo.png" alt="" width="75px">
+			</a>
+			<div id="logo-name" class="text-white text-center">
+				<h4 class="fs-3">Din-Gen</h4>
+				<p class="border fs-5">INSPO</p>
+			</div>
 			<div class="navbar-nav flex-row">
-				<button id="open-favourites" class="btn btn-primary" type="button" data-bs-target="#favourites" data-bs-toggle="offcanvas"
-					aria-controls="offcanvasWithBothOptions">Favourites</button>
+				<button id="open-favourites" class="btn btn-primary fs-4" type="button" data-bs-target="#favourites"
+					data-bs-toggle="offcanvas" aria-controls="offcanvasWithBothOptions">Favourites <i id="favourite-icon"
+						class="fa-solid fa-heart fs-4 text-danger"></i></button>
 				<!-- <a class="nav-link px-1 fs-4 text-white" href="#">About</a> -->
 			</div>
 		</div>
@@ -35,8 +41,8 @@
 					<!-- <button class="btn btn-primary" type="button" data-bs-target="#favourites" data-bs-toggle="offcanvas"
 						aria-controls="offcanvasWithBothOptions">Favourites</button> -->
 
-					<div id="favourites" class="offcanvas offcanvas-start w-25" data-bs-backdrop="static" data-bs-scroll="true" tabindex="-1"
-						aria-labelledby="offcanvasWithBothOptionsLabel">
+					<div id="favourites" class="offcanvas offcanvas-start w-50" data-bs-backdrop="static" data-bs-scroll="true"
+						tabindex="-1" aria-labelledby="offcanvasWithBothOptionsLabel">
 						<div class="offcanvas-header">
 							<h5 class="offcanvas-title">Favourites</h5>
 							<button id="favourite-close" type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
@@ -74,7 +80,7 @@
 							<button id="favourites-btn" class="d-none btn" type="button"><i id="favourite-icon"
 									class="fa-solid fa-heart fs-4"></i></button>
 							<button id="form-btn" class="btn btn-primary d-none" type="button">Back to form</button>
-							<button id="recipe-close" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"
+							<button id="recipe-close" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
 								type="button"></button>
 						</div>
 
@@ -108,7 +114,7 @@
 										<input id="excludeInput" type="text" class="form-control" placeholder="Exclude">
 										<label for="excludeInput">Exclude</label>
 									</div>
-									<button id="submit-form" type="submit" class="btn btn-danger">Generate</button>
+									<button id="submit-form" type="submit" class="btn btn-success">Generate</button>
 								</form>
 							</div>
 

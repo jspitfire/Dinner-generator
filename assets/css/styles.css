@@ -36,9 +36,26 @@ body, html {
 	background-color: #222;
 }
 
+#navbar {
+  border-bottom: 2px solid white;
+}
+
+.border {
+  border: 10px;
+}
+
 #recipe {
-	color: white;
-	background-color: #222;
+	color: black;
+  background-image: url(../images/parchment.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: repeat;
+	/* background-color: #222; */
+  border-left: 1px solid white;
+}
+
+#favourites {
+  border-right: 1px solid white;
 }
 
 #favourite-icon {
