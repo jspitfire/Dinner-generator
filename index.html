@@ -8,18 +8,147 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 	<link rel="stylesheet" href="./assets/css/styles.css" />
-	<title>Project 1</title>
+	<title>Din-Gen</title>
 </head>
 
 <body>
 
+	<!--! Navbar -->
+	<nav id="navbar" class="navbar navbar-expand-lg bg-primary mb-5">
+		<div class="container ">
+			<a class="navbar-brand fs-4 text-white" href="#">
+				<img src="./assets/images/din-gen-logo.png" alt="" width="75px">
+			</a>
+			<div id="logo-name" class="text-white text-center">
+				<h4 class="fs-3">Din-Gen</h4>
+				<p class="border fs-5">INSPO</p>
+			</div>
+			<div class="navbar-nav flex-row">
+				<button id="open-favourites" class="btn btn-primary fs-4" type="button" data-bs-target="#favourites"
+					data-bs-toggle="offcanvas" aria-controls="offcanvasWithBothOptions">Favourites <i id="favourite-icon"
+						class="fa-solid fa-heart fs-4 text-danger"></i></button>
+				<!-- <a class="nav-link px-1 fs-4 text-white" href="#">About</a> -->
+			</div>
+		</div>
+	</nav>
+
+	<main>
+		<div class="container-fluid">
+			<div class="row justify-content-between">
+
+				<!--! Favourites Off-Canvas -->
+				<div id="favourites-container" class="d-flex flex-column align-items-center col-2">
+					<!-- <button class="btn btn-primary" type="button" data-bs-target="#favourites" data-bs-toggle="offcanvas"
+						aria-controls="offcanvasWithBothOptions">Favourites</button> -->
+
+					<div id="favourites" class="offcanvas offcanvas-start w-50" data-bs-backdrop="static" data-bs-scroll="true"
+						tabindex="-1" aria-labelledby="offcanvasWithBothOptionsLabel">
+						<div class="offcanvas-header">
+							<h5 class="offcanvas-title">Favourites</h5>
+							<button id="favourite-close" type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+								aria-label="Close"></button>
+						</div>
+						<div id="favourites-body" class="offcanvas-body">
+
+						</div>
+					</div>
+
+				</div>
+
+				<!--! Center Content -->
+				<div id="center-container" class="col-8 w-50">
+					<div class="d-flex justify-content-between mb-2">
+						<button id="back-btn" type="button" class="btn btn-primary">Back</button>
+						<button id="generate-btn" class="btn btn-success" type="button" data-bs-target="#recipe"
+							data-bs-toggle="offcanvas" aria-controls="offcanvasWithBothOptions">Generate Recipe</button>
+						<button id="next-btn" type="button" class="btn btn-primary">Next</button>
+					</div>
+					<img id="img-main" class="mb-2 ">
+				</div>
+
+				<!--! Recipe Off-Canvas -->
+				<div id="recipe-offcanvas" class="d-flex flex-column align-items-center col-2">
+
+					<!-- <button id="generate-btn" class="btn btn-primary" type="button" data-bs-target="#recipe"
+						data-bs-toggle="offcanvas" aria-controls="offcanvasWithBothOptions">Generate</button> -->
+
+					<div id="recipe" class="offcanvas offcanvas-end" data-bs-backdrop="static" data-bs-scroll="true" tabindex="-1"
+						aria-labelledby="offcanvasWithBothOptionsLabel">
+
+						<div class="offcanvas-header">
+							<h5 id="recipe-title" class="offcanvas-title">Generate a recipe</h5>
+							<button id="favourites-btn" class="d-none btn" type="button"><i id="favourite-icon"
+									class="fa-solid fa-heart fs-4"></i></button>
+							<button id="form-btn" class="btn btn-primary d-none" type="button">Back to form</button>
+							<button id="recipe-close" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+								type="button"></button>
+						</div>
+
+						<div id="recipe-body" class="offcanvas-body">
+
+							<div id="recipe-container" class="d-none"></div>
+
+							<div id="list-container" class="d-none"></div>
+
+							<div id="form-container" class="">
+								<p>Seperate queries by commas.<br>
+									(e.g. tomato, lettuce...)</p>
+								<form id="form">
+									<div class="form-floating mb-3">
+										<input id="categoryInput" type="text" class="form-control" placeholder="Category" value="Pizza">
+										<label for="categoryInput">Category</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input id="dietInput" type="text" class="form-control" placeholder="Diet">
+										<label for="dietInput">Diet</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input id="intoleranceInput" type="text" class="form-control" placeholder="Intolerances">
+										<label for="IntoleranceInput">Intolerances</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input id="includeInput" type="text" class="form-control" placeholder="Include">
+										<label for="includeInput">Include</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input id="excludeInput" type="text" class="form-control" placeholder="Exclude">
+										<label for="excludeInput">Exclude</label>
+									</div>
+									<button id="submit-form" type="submit" class="btn btn-success">Generate</button>
+								</form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!--! Toast Component -->
+			<div class="toast-container position-fixed bottom-0 end-0 p-3">
+				<div id="liveToast" class="toast align-items-center text-bg-primary border-0 w-100" role="alert"
+					aria-live="assertive" aria-atomic="true">
+					<div class="d-flex">
+						<div class="toast-body">
+							Added to favourites
+						</div>
+						<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+							aria-label="Close"></button>
+					</div>
+				</div>
+			</div>
+
+	</main>
+
+	<!-- jQuery JS -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<!-- Bootstrap JS -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
-	<!-- jQuery JS -->
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script src="./assets/js/script.js"></script>
+	<!-- Font Awesome -->
+	<script type="text/javascript" src="https://kit.fontawesome.com/c1bc576c12.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="./assets/js/script.js"></script>
 </body>
 
 </html>
