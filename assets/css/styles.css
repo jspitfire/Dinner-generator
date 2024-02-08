@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap');/* Global Styles */
+/* 
+		Global Styles 
+*/
 :root {
 	/* FONT SIZES */
 	--F-XXS: 0.25rem;
@@ -13,90 +16,33 @@
 
 	/* COLORS */
 	--WHITE: #f5f5f5;
-	--BLUE: #118ab2;
-	--RED: #df2935;
-	--YELLOW: #ff9f1c;
-	--BLACK: #333;
-
-	/* BUTTON STYLES */
-	--button-bg-color: #4caf50;
-	--button-text-color: #fff;
-	--button-hover-color: #45a049;
+	--BLACK: #222;
 }
 
-body, html {
-	font-family: 'Arial', sans-serif;
-  background-color: var(--WHITE);
-  color: var(--BLACK);
+/* 
+		General
+*/
+
+html {
+	font-family: 'Roboto', sans-serif;
+}
+
+body {
+	background-color: var(--BLACK);
 	background-image: url(../images/wooden-background.webp);
-	/* background-image: url(../images/brownchoppingboard.jpg); */
-	/* background-image: url(../images/blackchoppingboard.jpg); */
-	/* background-image: url(../images/whitechoppingboard.avif); */
 	/* background-image: url(../images/dark-black-wooden-background.webp); */
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-  height: 100%;
-	background-color: #222;
+	/* height: 100%; */
 }
 
-#navbar {
-  border-bottom: 2px solid white;
+.filter-blur {
+	filter: blur(8px);
 }
 
 .border {
-  border: 10px;
-}
-
-#recipe {
-	color: black;
-  background-image: url(../images/parchment.png);
-  background-position: center;
-  background-size: cover;
-  background-repeat: repeat;
-	/* background-color: #222; */
-  border-left: 1px solid white;
-}
-
-#favourites {
-  border-right: 1px solid white;
-}
-
-#favourite-icon {
-	color: white;
-}
-
-form label {
-	color: #222;
-}
-
-#favourites {
-	color: white;
-	background: #222;
-}
-
-#img-main {
-	height: 475px;
-	width: 100%;
-	object-fit: cover;
-	border-radius: 1rem;
-	box-shadow: 2px 2px 8px 0 black;
-}
-
-.favourite-el {
-	width: 95%;
-	height: 25%;
-}
-
-.img-fave {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	border-radius: 0.5rem;
-}
-
-#generate-btn {
-  box-shadow: 2px 2px 10px 0 black;
+	border: 10px;
 }
 
 .w-50 {
@@ -107,69 +53,96 @@ form label {
 	transition: all 0.3s ease-in-out;
 }
 
-.filter-blur {
-  filter: blur(8px);
+#generate-btn {
+	font-size: var(--F-M);
+	box-shadow: 2px 2px 10px 0 var(--BLACK);
 }
 
-/* body {
-  font-family: 'Arial', sans-serif;
-  background-color: var(--WHITE);
-  color: var(--BLACK);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-} */
-
-/* Button Styles */
-/* .button {
-  background-color: var(--button-bg-color);
-  color: var(--button-text-color);
-  border: none;
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-} */
-
-/* .button:hover {
-  background-color: var(--button-hover-color);
-} */
-
-/* End Criteria Specific Styles */
-/* #random-pic {
-  max-width: 100%;
-  height: auto;
-  border-radius: 5px;
-  margin-bottom: 20px;
+#navbar {
+	border-bottom: 2px solid var(--WHITE);
 }
 
-.recipe-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+#img-main {
+	height: 475px;
+	width: 100%;
+	object-fit: cover;
+	border-radius: 1rem;
+	box-shadow: 2px 2px 8px 0 var(--BLACK);
 }
 
-#recipe-name {
-  font-size: var(--F-L);
-  margin-bottom: 10px;
+/*
+		Recipe elements
+*/
+
+#recipe-offcanvas {
+	color: var(--BLACK);
+	background-image: url(../images/parchment.png);
+	background-position: center;
+	background-size: cover;
+	background-repeat: repeat;
+	background-color: var(--BLACK);
+	border-left: 2px solid var(--WHITE);
 }
 
-#recipe-ingredients {
-  font-size: var(--F-NORMAL);
-  margin-bottom: 20px;
+form label {
+	color: var(--BLACK);
 }
 
-#favorites-list {
-  list-style: none;
-  padding: 0;
+#recipe-container {
+	font-size: var(--F-M);
+	font-weight: 500;
 }
 
-.favorites-item {
-  font-size: var(--F-M);
-  margin-bottom: 5px;
-} */
+/* 
+		Favourite elements
+*/
+
+#favourite-icon {
+	color: var(--WHITE);
+}
+
+#favourites-offcanvas {
+	color: var(--WHITE);
+	background: var(--BLACK);
+	border-right: 2px solid var(--WHITE);
+}
+
+#favourite-item__wrapper {
+	position: relative;
+	justify-content: space-evenly;
+}
+
+.favourites-list__title {
+	width: 80%;
+}
+
+.favourite-el {
+	width: 80%;
+	height: 150px;
+}
+
+.img-fave {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 0.5rem;
+}
+
+.favourite-delete {
+	position: absolute;
+	bottom: 12.5%;
+	right: 12%;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: transparent;
+	border: none;
+	transition: all 0.2s ease-in-out;
+}
+
+.favourite-delete:hover {
+	transform: scale(1.2);
+	background-color: var(--WHITE);
+	box-shadow: 1px 1px 8px 0 var(--BLACK);
+}
