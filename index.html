@@ -17,17 +17,16 @@
 	<nav id="navbar" class="navbar navbar-expand-lg bg-primary mb-5">
 		<div class="container ">
 			<a class="navbar-brand fs-4 text-white" href="#">
-				<img src="./assets/images/din-gen-logo.png" alt="" width="75px">
+				<img src="./assets/images/INSPO-logo.png" alt="" width="75px">
 			</a>
 			<div id="logo-name" class="text-white text-center">
 				<h4 class="fs-3">Din-Gen</h4>
 				<p class="border fs-5">INSPO</p>
 			</div>
 			<div class="navbar-nav flex-row">
-				<button id="open-favourites" class="btn btn-primary fs-4" type="button" data-bs-target="#favourites"
-					data-bs-toggle="offcanvas" aria-controls="offcanvasWithBothOptions">Favourites <i id="favourite-icon"
-						class="fa-solid fa-heart fs-4 text-danger"></i></button>
-				<!-- <a class="nav-link px-1 fs-4 text-white" href="#">About</a> -->
+				<button id="open-favourites" class="btn btn-primary fs-4" type="button" data-bs-target="#favourites-offcanvas"
+					data-bs-toggle="offcanvas" aria-controls="offcanvasWithBothOptions"><i
+						class="fa-solid fa-heart fs-2 text-danger"></i></button>
 			</div>
 		</div>
 	</nav>
@@ -37,14 +36,15 @@
 			<div class="row justify-content-between">
 
 				<!--! Favourites Off-Canvas -->
-				<div id="favourites-container" class="d-flex flex-column align-items-center col-2">
+				<div id="favourites-container" class="d-flex flex-column align-items-center col-1 col-md-2 col-lg-3">
+
 					<!-- <button class="btn btn-primary" type="button" data-bs-target="#favourites" data-bs-toggle="offcanvas"
 						aria-controls="offcanvasWithBothOptions">Favourites</button> -->
 
-					<div id="favourites" class="offcanvas offcanvas-start w-50" data-bs-backdrop="static" data-bs-scroll="true"
-						tabindex="-1" aria-labelledby="offcanvasWithBothOptionsLabel">
+					<div id="favourites-offcanvas" class="offcanvas offcanvas-start w-50" data-bs-backdrop="static"
+						data-bs-scroll="true" tabindex="-1" aria-labelledby="offcanvasWithBothOptionsLabel">
 						<div class="offcanvas-header">
-							<h5 class="offcanvas-title">Favourites</h5>
+							<h4 class="offcanvas-title">Favourites</h4>
 							<button id="favourite-close" type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
 								aria-label="Close"></button>
 						</div>
@@ -56,10 +56,10 @@
 				</div>
 
 				<!--! Center Content -->
-				<div id="center-container" class="col-8 w-50">
+				<div id="center-container" class="col-10 col-md-8 col-lg-6">
 					<div class="d-flex justify-content-between mb-2">
 						<button id="back-btn" type="button" class="btn btn-primary">Back</button>
-						<button id="generate-btn" class="btn btn-success" type="button" data-bs-target="#recipe"
+						<button id="generate-btn" class="btn btn-success" type="button" data-bs-target="#recipe-offcanvas"
 							data-bs-toggle="offcanvas" aria-controls="offcanvasWithBothOptions">Generate Recipe</button>
 						<button id="next-btn" type="button" class="btn btn-primary">Next</button>
 					</div>
@@ -67,16 +67,16 @@
 				</div>
 
 				<!--! Recipe Off-Canvas -->
-				<div id="recipe-offcanvas" class="d-flex flex-column align-items-center col-2">
+				<div id="recipe-offcanvas__container" class="d-flex flex-column align-items-center col-1 col-md-2 col-lg-3">
 
 					<!-- <button id="generate-btn" class="btn btn-primary" type="button" data-bs-target="#recipe"
 						data-bs-toggle="offcanvas" aria-controls="offcanvasWithBothOptions">Generate</button> -->
 
-					<div id="recipe" class="offcanvas offcanvas-end" data-bs-backdrop="static" data-bs-scroll="true" tabindex="-1"
-						aria-labelledby="offcanvasWithBothOptionsLabel">
+					<div id="recipe-offcanvas" class="offcanvas offcanvas-end" data-bs-backdrop="static" data-bs-scroll="true"
+						tabindex="-1" aria-labelledby="offcanvasWithBothOptionsLabel">
 
 						<div class="offcanvas-header">
-							<h5 id="recipe-title" class="offcanvas-title">Generate a recipe</h5>
+							<h4 id="recipe-title" class="offcanvas-title">Generate <span id="category-name"></span> recipe</h4>
 							<button id="favourites-btn" class="d-none btn" type="button"><i id="favourite-icon"
 									class="fa-solid fa-heart fs-4"></i></button>
 							<button id="form-btn" class="btn btn-primary d-none" type="button">Back to form</button>
@@ -94,10 +94,6 @@
 								<p>Seperate queries by commas.<br>
 									(e.g. tomato, lettuce...)</p>
 								<form id="form">
-									<div class="form-floating mb-3">
-										<input id="categoryInput" type="text" class="form-control" placeholder="Category" value="Pizza">
-										<label for="categoryInput">Category</label>
-									</div>
 									<div class="form-floating mb-3">
 										<input id="dietInput" type="text" class="form-control" placeholder="Diet">
 										<label for="dietInput">Diet</label>
@@ -126,7 +122,7 @@
 
 			<!--! Toast Component -->
 			<div class="toast-container position-fixed bottom-0 end-0 p-3">
-				<div id="liveToast" class="toast align-items-center text-bg-primary border-0 w-100" role="alert"
+				<div id="liveToast" class="toast align-items-center text-bg-success border-0 w-100" role="alert"
 					aria-live="assertive" aria-atomic="true">
 					<div class="d-flex">
 						<div class="toast-body">
