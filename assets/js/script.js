@@ -7,6 +7,7 @@ const elements = {
   generateBtn: $("#generate-btn"),
   formBtn: $("#form-btn"),
   recipeOffcanvas: $("#recipe-offcanvas"),
+  categoryName: $("#category-name"),
   recipeTitle: $("#recipe-title"),
   favouritesBtn: $("#favourites-btn"),
   favouritesBody: $("#favourites-body"),
@@ -68,7 +69,7 @@ const fetchNewImage = () => {
 
       // Update the UI
       elements.imgMain.attr("src", imgURL);
-      elements.recipeTitle.text(`Generate ${category} recipe`);
+      elements.categoryName.text(`${category}`);
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -139,11 +140,10 @@ https://api.spoonacular.com/recipes/complexSearch?
 };
 
 // Display recipe titles as buttons
-const displayRecipeTitles = (titles, data, query) => {
+const displayRecipeTitles = (titles, data) => {
   elements.listContainer.empty();
   elements.listContainer.removeClass("d-none");
   elements.formContainer.addClass("d-none");
-  elements.recipeTitle.text(`Generate ${query} recipe`);
 
   const dataArray = data.results; // Convert results to an array
 
@@ -191,7 +191,8 @@ const displayRecipe = (steps, title) => {
   updateFavouriteIcon(saveImgSrc);
 };
 
-const showForm = () => {
+const showForm = (saveCategory) => {
+  elements.recipeTitle.html(`Generate <span id="category-name">${saveCategory}</span> recipe`);
   elements.formContainer.removeClass("d-none");
   elements.recipeOffcanvas.removeClass("w-75");
   elements.recipeOffcanvas.addClass("w-50");
@@ -200,8 +201,6 @@ const showForm = () => {
   elements.favouritesBtn.addClass("d-none");
   elements.formBtn.addClass("d-none");
   elements.imgMain.addClass("filter-blur");
-
-  elements.recipeTitle.text(`Generate ${saveCategory} recipe`);
 };
 
 const addToFavorites = () => {
@@ -209,7 +208,7 @@ const addToFavorites = () => {
   const recipeImgSrc = displayedRecipeImgSrc;
   const favourites = JSON.parse(localStorage.getItem("favourites")) || [];
 
-  const exists = favourites.some(fav => 
+  const exists = favourites.some(fav =>
     fav.imgSrc === imgSrc || fav.imgSrc === recipeImgSrc || fav.title === saveTitle);
 
   if (exists) {
@@ -340,8 +339,12 @@ const addEventListeners = () => {
   elements.nextBtn.on("click", fetchNewImage);
   elements.backBtn.on("click", goBack);
   elements.form.on("submit", (e) => fetchRecipe(e));
-  elements.generateBtn.on("click", showForm);
-  elements.formBtn.on("click", showForm);
+  elements.generateBtn.on("click", () => {
+    showForm(saveCategory);
+  });
+  elements.formBtn.on("click", () => {
+    showForm(saveCategory);
+  });
   elements.favouritesBtn.on("click", () => {
     addToFavorites();
     showToast();

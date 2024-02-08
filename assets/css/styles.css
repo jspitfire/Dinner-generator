@@ -17,6 +17,7 @@
 	/* COLORS */
 	--WHITE: #f5f5f5;
 	--BLACK: #222;
+	--GREEN: #198754;
 }
 
 /* 
@@ -94,6 +95,10 @@ form label {
 	font-weight: 500;
 }
 
+#category-name {
+	color: var(--GREEN);
+}
+
 /* 
 		Favourite elements
 */
@@ -143,7 +148,7 @@ form label {
 }
 
 .favourite-delete:hover {
-	transform: scale(1.2);
+	transform: scale(1.1);
 	background-color: var(--WHITE);
 	box-shadow: 1px 1px 8px 0 var(--BLACK);
 }
