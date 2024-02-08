@@ -20,9 +20,9 @@ The Dinner Generator App is a tool designed to provide users with random dinner 
 - Click "Next" button to generate image.
 - Click "Back" to go back to previous images viewed.
 - To generate recipe click "Generate Recipe" and a form will pop up.
-- - Then imput dietry requierments in the form if needed.
-- - Next, click "generate" button and a list of recipes will appear.
-- - Lastly, click on a recipe and the steps will be rendered for you.
+  - Then imput dietry requierments in the form if needed.
+  - Next, click "generate" button and a list of recipes will appear.
+  - Lastly, click on a recipe and the steps will be rendered for you.
 - To save to favourites, simply click on the "heart" icon when viewing the generated recipe.
 - To open favourites list, click on "heart" icon in the navbar.
 - To delete favourite items, simply click on the "bin" icon when viewing favourites list
