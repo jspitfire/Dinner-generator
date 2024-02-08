@@ -108,8 +108,8 @@ const fetchRecipe = (e) => {
   include = includeInput;
   exclude = excludeInput;
   const addRecipe = true;
-  const nutrition = true;
-  const number = 2;
+  // const nutrition = true;
+  // const number = 2;
   const API_KEY_1 = "08bfac6db5a24fa780d937a91262a007";
   const API_KEY_2 = "0da42d4e08354eeeaac861bfc5934b79";
   const API_KEY_3 = "a720e49ef1384305a7eec6386dfe23b6";
@@ -121,9 +121,9 @@ https://api.spoonacular.com/recipes/complexSearch?
 &includeIngredients=${include}
 &excludeIngredients=${exclude}
 &addRecipeInformation=${addRecipe}
-&addRecipeNutrition=${nutrition}
-&apiKey=${API_KEY_1}
+&apiKey=${API_KEY_2}
 `;
+  // &addRecipeNutrition=${nutrition}
   // &number=${number}
 
   fetch(queryURL)
@@ -288,8 +288,8 @@ const displayFavoriteRecipe = (favourite) => {
   displayedRecipeImgSrc = imgSrc;
 
   const addRecipe = true;
-  const nutrition = true;
-  const number = 2;
+  // const nutrition = true;
+  // const number = 2;
   const API_KEY_1 = "08bfac6db5a24fa780d937a91262a007";
   const API_KEY_2 = "0da42d4e08354eeeaac861bfc5934b79";
   const API_KEY_3 = "a720e49ef1384305a7eec6386dfe23b6";
@@ -301,9 +301,9 @@ https://api.spoonacular.com/recipes/complexSearch?
 &includeIngredients=${include}
 &excludeIngredients=${exclude}
 &addRecipeInformation=${addRecipe}
-&addRecipeNutrition=${nutrition}
-&apiKey=${API_KEY_1}
+&apiKey=${API_KEY_2}
 `;
+  // &addRecipeNutrition=${nutrition}
   // &number=${number}
 
   fetch(queryURL)
