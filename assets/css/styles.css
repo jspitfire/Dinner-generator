@@ -27,14 +27,15 @@ html {
 	font-family: 'Roboto', sans-serif;
 }
 
-body {
+body,
+html {
 	background-color: var(--BLACK);
 	background-image: url(../images/wooden-background.webp);
 	/* background-image: url(../images/dark-black-wooden-background.webp); */
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	/* height: 100%; */
+	height: 100%;
 }
 
 .filter-blur {
