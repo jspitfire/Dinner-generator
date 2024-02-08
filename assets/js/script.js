@@ -208,8 +208,7 @@ const addToFavorites = () => {
   const recipeImgSrc = displayedRecipeImgSrc;
   const favourites = JSON.parse(localStorage.getItem("favourites")) || [];
 
-  const exists = favourites.some(fav =>
-    fav.imgSrc === imgSrc || fav.imgSrc === recipeImgSrc || fav.title === saveTitle);
+  const exists = favourites.some(fav => fav.title === saveTitle);
 
   if (exists) {
     $("#liveToast .toast-body").text("Already added!");
@@ -272,8 +271,8 @@ const loadFavouritesFromLocalStorage = () => {
 
 const updateFavouriteIcon = (imgSrc) => {
   const favourites = JSON.parse(localStorage.getItem("favourites")) || [];
-  let isFavorite = favourites.some(fav =>
-    fav.imgSrc === imgSrc || fav.imgSrc === saveImgSrc || fav.title === saveTitle);
+
+  let isFavorite = favourites.some(fav => fav.title === saveTitle);
 
   if (isFavorite) {
     $("#favourite-icon").addClass("text-danger");
