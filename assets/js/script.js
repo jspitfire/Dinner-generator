@@ -121,7 +121,7 @@ https://api.spoonacular.com/recipes/complexSearch?
 &excludeIngredients=${exclude}
 &addRecipeInformation=${addRecipe}
 &addRecipeNutrition=${nutrition}
-&apiKey=${API_KEY_3}
+&apiKey=${API_KEY_1}
 `;
   // &number=${number}
 
@@ -303,7 +303,7 @@ https://api.spoonacular.com/recipes/complexSearch?
 &excludeIngredients=${exclude}
 &addRecipeInformation=${addRecipe}
 &addRecipeNutrition=${nutrition}
-&apiKey=${API_KEY_3}
+&apiKey=${API_KEY_1}
 `;
   // &number=${number}
 
