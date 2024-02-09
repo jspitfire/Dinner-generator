@@ -284,6 +284,8 @@ const updateFavouriteIcon = (imgSrc) => {
 const displayFavoriteRecipe = (favourite) => {
   const { title, query, diet, intolerances, include, exclude, imgSrc } = favourite;
 
+  saveTitle = title;
+
   displayedRecipeImgSrc = imgSrc;
 
   const addRecipe = true;
